@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anoki.media/sitemap.xml

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Anoki — Monteur vidéo freelance</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div id="site-root" aria-live="polite"></div>
+    <div id="lang-switch">
+      <button id="btn-fr" class="lang-btn">FR</button>
+      <button id="btn-en" class="lang-btn">EN</button>
+    </div>
+
+    <script src="js/site.js"></script>
+    <script>
+      const partials = [
+        'partials/header.html',
+        'partials/hero.html',
+        'partials/work.html',
+        'partials/footer.html?v=3'
+      ];
+
+      function boot() {
+        Site.initLangUI();
+        Site.loadPartials(partials);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+      } else {
+        boot();
+      }
+
+      document.addEventListener('partialsLoaded', () => {
+        const radios = document.querySelectorAll('input[name="work-filter"]');
+        radios.forEach(radio => {
+          radio.addEventListener('change', (event) => {
+            const value = event.target.value;
+            if (value === 'all') {
+              const work = document.getElementById('work');
+              if (work) work.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              history.replaceState(null, '', window.location.pathname + window.location.search);
+              return;
+            }
+            const target = document.getElementById(value);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              history.replaceState(null, '', window.location.pathname + window.location.search + '#' + value);
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
