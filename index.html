@@ -1,81 +1,288 @@
-<!doctype html>
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Anoki — Monteur vidéo freelance</title>
-    <link rel="icon" href="assets/logo_anoki-media.svg" type="image/svg+xml" />
-    <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Anoki Media</title>
+    <meta
+      name="description"
+      content="Anoki Media — short-form video editor crafting cinematic shorts and longform stories."
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <div id="site-root" aria-live="polite"></div>
-    <div id="lang-switch">
-      <button id="btn-fr" class="lang-btn">FR</button>
-      <button id="btn-en" class="lang-btn">EN</button>
+    <div class="page">
+      <nav class="site-nav" aria-label="Primary">
+        <div class="nav-group nav-group--left" aria-label="Contact links">
+          <a
+            class="icon-link"
+            href="mailto:contact@anoki.media"
+            aria-label="Email Anoki"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+              />
+            </svg>
+          </a>
+          <a
+            class="icon-link"
+            href="https://www.instagram.com/anoki.media/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z" />
+            </svg>
+          </a>
+        </div>
+        <div class="brand" aria-label="Anoki">ANOKI</div>
+        <div class="nav-group nav-group--right">
+          <a href="#work" data-i18n="nav.work">Work</a>
+          <a href="mailto:contact@anoki.media" data-i18n="nav.email">Email</a>
+          <button type="button" id="lang-toggle" aria-live="polite" aria-label="Switch language to French">
+            <span class="label">Français</span>
+          </button>
+        </div>
+      </nav>
+
+      <header class="hero" role="banner">
+        <div class="hero-content">
+          <div class="profile" role="img" aria-label="Anoki portrait placeholder"></div>
+          <h1>
+            Anoki
+            <span aria-hidden="true" class="hero-star" role="presentation">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="m12 2.5 2.6 6.07 6.65.56-5.02 4.26 1.53 6.52L12 16.9l-5.76 2.99 1.53-6.52-5.02-4.26 6.65-.56L12 2.5Z"
+                />
+              </svg>
+            </span>
+            <span data-i18n="hero.title">Editor</span>
+          </h1>
+          <p data-i18n="hero.tagline">
+           Je crée des short vidéos percutantes pour créateurs, marques et entreprises. Peu importe le style/storytelling, trend, humour ou cinématique, je m'adapte à ton vibe.
+          </p>
+          <div class="cta">
+            <a class="primary" href="https://www.instagram.com/anoki.media/" target="_blank" rel="noopener noreferrer" data-i18n="hero.cta.primary"
+              >Let's Work Together</a
+            >
+            <a href="#work" data-i18n="hero.cta.secondary">View Projects</a>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="section" id="work" aria-labelledby="work-title">
+          <div class="section-header">
+            <h2 id="work-title" data-i18n="section.title">Projects</h2>
+            <span class="meta" data-i18n="section.meta">Shortform · Longform</span>
+          </div>
+
+          <div
+            class="filters"
+            aria-label="Filter by category"
+            data-i18n-attr="aria-label"
+            data-i18n-attr-key="filters.aria"
+          >
+            <label class="search-field">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M10.5 3a7.5 7.5 0 0 1 5.86 12.18l4.73 4.73-1.42 1.41-4.73-4.73A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"
+                />
+              </svg>
+              <span class="sr-only" data-i18n="search.label">Search projects</span>
+              <input
+                type="search"
+                id="search"
+                name="search"
+                placeholder="Search by project name or collaborator..."
+                autocomplete="off"
+                data-i18n-placeholder="search.placeholder"
+              />
+            </label>
+            <div
+              class="filter-chips"
+              role="tablist"
+              aria-label="Filter by category"
+              data-i18n-attr="aria-label"
+              data-i18n-attr-key="filters.aria"
+            >
+              <button class="chip is-active" data-filter="all" role="tab" aria-selected="true">
+                <span data-i18n="chip.all">All</span>
+              </button>
+              <button class="chip" data-filter="shorts" role="tab" aria-selected="false">
+                <span data-i18n="chip.shorts">Shortform</span>
+              </button>
+              <button class="chip" data-filter="longform" role="tab" aria-selected="false">
+                <span data-i18n="chip.longform">Longform</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="gallery" id="gallery">
+            <article
+              class="project-card"
+              data-title="« STAR » de Morrow · Prod. Shmxrky"
+              data-tags="longform|music"
+              data-category="longform"
+            >
+              <div
+                class="project-thumb"
+                style="background-image: url('assets/images/star_thumbnail.jpg');"
+              ></div>
+              <div class="project-details">
+                <div class="meta" data-i18n="card.morrow.meta">Longform · Music</div>
+                <h3>« STAR » de Morrow · Prod. Shmxrky</h3>
+                <p data-i18n="card.morrow.description">
+                  Personal project improvised and shot for an underground artist friend.
+                </p>
+                <div class="project-actions">
+                  <button
+                    type="button"
+                    data-drive="https://www.youtube.com/embed/lt-0w-0dEM0?rel=0&modestbranding=1"
+                    data-videos='[{"title":"Video 1","src":"https://www.youtube.com/embed/lt-0w-0dEM0?rel=0&modestbranding=1"}]'
+                    data-title="« STAR » de Morrow · Prod. Shmxrky"
+                    data-description-en="Longform music video · 3:45"
+                    data-description-fr="Clip musical long format · 3 min 45"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M7 4.75v14.5c0 1.2 1.32 1.92 2.33 1.22l9.8-6.75a1.5 1.5 0 0 0 0-2.44l-9.8-6.75C8.32 3.83 7 4.55 7 5.75Z"
+                      />
+                    </svg>
+                    <span data-i18n="project.play">Play Fullscreen</span>
+                  </button>
+                  <span class="length">3:45</span>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-card"
+              data-title="Vincent_Lavoie - @vinny.lavoie"
+              data-tags="shorts|client"
+              data-category="shorts"
+            >
+              <div
+                class="project-thumb"
+                style="background-image: url('assets/images/Vincent_lavoie.jpg');"
+              ></div>
+              <div class="project-details">
+                <div class="meta" data-i18n="card.vincent.meta">Shortform · Client</div>
+                <h3>Vincent_Lavoie - @vinny.lavoie</h3>
+                <p data-i18n="card.vincent.description">
+                  These videos were created free of charge as a practice exchange. They were edited freestyle without attending the shoot or receiving a formal brief—thank you Vincent for the opportunity!
+                </p>
+                <div class="project-actions">
+                  <button
+                    type="button"
+                    data-drive="https://drive.google.com/file/d/14sb-AjMsevXR1bJvNYUY_tilA52en1h5/preview"
+                    data-videos='[{"title":"Video 1","src":"https://drive.google.com/file/d/14sb-AjMsevXR1bJvNYUY_tilA52en1h5/preview"},{"title":"Video 2","src":"https://drive.google.com/file/d/1Xl6xj685yWqthtVNKRhhSBynKOjUXHfe/preview"},{"title":"Video 3","src":"https://drive.google.com/file/d/1m4npc5eDnd7onsbSklUijfku_1XP3WGd/preview"}]'
+                    data-title="Vincent_Lavoie - @vinny.lavoie"
+                    data-description-en="These videos were created free of charge as a practice exchange—freestyle edits without attending the shoot or receiving a brief."
+                    data-description-fr="Ces vidéos ont été réalisées gratuitement dans le cadre d’un échange d’expérience et montées en freestyle, sans participation au tournage ni brief préalable."
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M7 4.75v14.5c0 1.2 1.32 1.92 2.33 1.22l9.8-6.75a1.5 1.5 0 0 0 0-2.44l-9.8-6.75C8.32 3.83 7 4.55 7 5.75Z"
+                      />
+                    </svg>
+                    <span data-i18n="project.play">Play Fullscreen</span>
+                  </button>
+                  <span class="length">3× :30</span>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-card"
+              data-title="@Findmeonce - Moi ;)"
+              data-tags="shorts|entertainment"
+              data-category="shorts"
+            >
+              <div
+                class="project-thumb"
+                style="background-image: url('assets/images/findmeonce_thumbnail.jpg');"
+              ></div>
+              <div class="project-details">
+                <div class="meta" data-i18n="card.find.meta">Shortform · Entertainment</div>
+                <h3>@Findmeonce - Moi ;)</h3>
+                <p data-i18n="card.find.description">
+                  English vlog content where I share creative experiences, travel stories, and everyday life.
+                </p>
+                <div class="project-actions">
+                  <button
+                    type="button"
+                    data-drive="https://drive.google.com/file/d/1lbWlJk23XQ9-IyJtceqPRWuLUUBuV5-Z/preview"
+                    data-videos='[{"title":"Video 1","src":"https://drive.google.com/file/d/1lbWlJk23XQ9-IyJtceqPRWuLUUBuV5-Z/preview"},{"title":"Video 2","src":"https://drive.google.com/file/d/16dWFtwvNdaagwELgWrkVsZ3W9JW4tpkO/preview"},{"title":"Video 3","src":"https://drive.google.com/file/d/1Kv3r5tRAPevwo3xJBcWY0gCWnD5wNlmX/preview"},{"title":"Video 4","src":"https://drive.google.com/file/d/15Or5PouwXUQuBOY0QSKiJaq4wsO2jZgf/preview"}]'
+                    data-title="@Findmeonce - Moi ;)"
+                    data-description-en="English vlog content where I share creative experiences, travel stories, and everyday life."
+                    data-description-fr="Contenu de vlog en anglais où je partage mes expériences créatives, mes voyages et mon quotidien."
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M7 4.75v14.5c0 1.2 1.32 1.92 2.33 1.22l9.8-6.75a1.5 1.5 0 0 0 0-2.44l-9.8-6.75C8.32 3.83 7 4.55 7 5.75Z"
+                      />
+                    </svg>
+                    <span data-i18n="project.play">Play Fullscreen</span>
+                  </button>
+                  <span class="length">4× :20</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        © <span id="year"></span> Anoki Media · <a href="mailto:contact@anoki.media">contact@anoki.media</a>
+        <div class="footer-icons" aria-label="Social links">
+          <a class="icon-link" href="mailto:contact@anoki.media" aria-label="Email Anoki">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+              />
+            </svg>
+          </a>
+          <a
+            class="icon-link"
+            href="https://www.instagram.com/anoki.media/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z" />
+            </svg>
+          </a>
+        </div>
+      </footer>
     </div>
 
-    <script src="js/site.js"></script>
-    <script>
-      const partials = [
-        'partials/header.html',
-        'partials/hero.html',
-        'partials/work.html',
-        'partials/footer.html?v=3'
-      ];
+    <div class="modal" role="dialog" aria-modal="true" aria-hidden="true" id="video-modal">
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3 id="modal-title">Project</h3>
+          <button class="modal-close" type="button" data-close aria-label="Close video">
+            ×
+          </button>
+        </div>
+        <iframe
+          id="modal-player"
+          title="Anoki video preview"
+          allow="autoplay; fullscreen"
+          src=""
+        ></iframe>
+        <div class="modal-playlist" id="modal-playlist" hidden></div>
+        <div class="modal-header">
+          <p id="modal-description" style="margin: 0; font-size: 0.86rem; opacity: 0.8"></p>
+        </div>
+      </div>
+    </div>
 
-      function boot() {
-        Site.initLangUI();
-        Site.loadPartials(partials);
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', boot);
-      } else {
-        boot();
-      }
-
-      document.addEventListener('partialsLoaded', () => {
-        const radios = document.querySelectorAll('input[name="work-filter"]');
-        const status = document.getElementById('work-status');
-        const lang = document.documentElement.lang || 'fr';
-        const updateStatus = (value, labelText) => {
-          if (!status) return;
-          if (value === 'all') {
-            status.textContent = lang === 'fr' ? 'Affichage : toutes les catégories' : 'Showing all categories';
-          } else {
-            status.textContent = lang === 'fr' ? `Affichage : ${labelText}` : `Showing ${labelText}`;
-          }
-        };
-        radios.forEach(radio => {
-          radio.addEventListener('change', (event) => {
-            const value = event.target.value;
-            const label = event.target.closest('label');
-            const labelText = label ? label.innerText.trim() : value;
-            if (value === 'all') {
-              const work = document.getElementById('work');
-              if (work) work.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              updateStatus(value, labelText);
-              history.replaceState(null, '', window.location.pathname + window.location.search);
-              return;
-            }
-            const target = document.getElementById(value);
-            if (target) {
-              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              updateStatus(value, labelText);
-              const base = window.location.pathname + window.location.search;
-              history.replaceState(null, '', `${base}#${value}`);
-            }
-          });
-        });
-        const checked = document.querySelector('input[name="work-filter"]:checked');
-        if (checked) {
-          const label = checked.closest('label');
-          const labelText = label ? label.innerText.trim() : checked.value;
-          updateStatus(checked.value, labelText);
-        }
-      });
-    </script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
