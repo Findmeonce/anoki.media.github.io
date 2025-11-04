@@ -38,22 +38,43 @@
 
       document.addEventListener('partialsLoaded', () => {
         const radios = document.querySelectorAll('input[name="work-filter"]');
+        const status = document.getElementById('work-status');
+        const lang = document.documentElement.lang || 'fr';
+        const updateStatus = (value, labelText) => {
+          if (!status) return;
+          if (value === 'all') {
+            status.textContent = lang === 'fr' ? 'Affichage : toutes les catégories' : 'Showing all categories';
+          } else {
+            status.textContent = lang === 'fr' ? `Affichage : ${labelText}` : `Showing ${labelText}`;
+          }
+        };
         radios.forEach(radio => {
           radio.addEventListener('change', (event) => {
             const value = event.target.value;
+            const label = event.target.closest('label');
+            const labelText = label ? label.innerText.trim() : value;
             if (value === 'all') {
               const work = document.getElementById('work');
               if (work) work.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              updateStatus(value, labelText);
               history.replaceState(null, '', window.location.pathname + window.location.search);
               return;
             }
             const target = document.getElementById(value);
             if (target) {
               target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              history.replaceState(null, '', window.location.pathname + window.location.search + '#' + value);
+              updateStatus(value, labelText);
+              const base = window.location.pathname + window.location.search;
+              history.replaceState(null, '', `${base}#${value}`);
             }
           });
         });
+        const checked = document.querySelector('input[name="work-filter"]:checked');
+        if (checked) {
+          const label = checked.closest('label');
+          const labelText = label ? label.innerText.trim() : checked.value;
+          updateStatus(checked.value, labelText);
+        }
       });
     </script>
   </body>

@@ -65,7 +65,50 @@
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
     syncNavLinks();
+    updateStickyOffset();
     document.dispatchEvent(new Event('partialsLoaded'));
+  }
+
+  function updateStickyOffset() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+    const rect = header.getBoundingClientRect();
+    const offset = Math.ceil(rect.height + 16);
+    document.documentElement.style.setProperty('--sticky-header-offset', offset + 'px');
+  }
+
+  function initVideoLazy() {
+    const videos = document.querySelectorAll('video.short-video');
+    if (!videos.length) return;
+    const loadVideo = function (video) {
+      if (video.dataset.lazyLoaded === 'true') return;
+      video.preload = 'metadata';
+      try { video.load(); } catch (error) { /* ignore */ }
+      video.dataset.lazyLoaded = 'true';
+    };
+    if (!('IntersectionObserver' in window)) {
+      videos.forEach(function (video) {
+        video.dataset.lazyLoaded = 'true';
+        video.preload = 'metadata';
+        try { video.load(); } catch (error) { /* ignore */ }
+      });
+      return;
+    }
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          loadVideo(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '200px 0px', threshold: 0.1 });
+    videos.forEach(function (video) {
+      if (video.dataset.lazyInit === 'true') return;
+      video.dataset.lazyInit = 'true';
+      video.setAttribute('loading', 'lazy');
+      observer.observe(video);
+      video.addEventListener('play', function () { loadVideo(video); });
+    });
   }
 
   function splitHref(baseHref) {
@@ -125,10 +168,19 @@
     wireLangSwitch();
   }
 
+  document.addEventListener('partialsLoaded', initLangUI);
+  document.addEventListener('partialsLoaded', updateStickyOffset);
+  document.addEventListener('partialsLoaded', initVideoLazy);
+  document.addEventListener('DOMContentLoaded', initVideoLazy);
+  window.addEventListener('resize', updateStickyOffset);
+  window.addEventListener('orientationchange', updateStickyOffset);
+
   window.Site = {
     getLang: getLang,
     highlightLangBtn: highlightLangBtn,
     initLangUI: initLangUI,
+    updateStickyOffset: updateStickyOffset,
+    initVideoLazy: initVideoLazy,
     loadPartials: loadPartials,
     setMeta: setMeta,
     syncNavLinks: syncNavLinks
